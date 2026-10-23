@@ -1,4 +1,4 @@
-# Focus Board — Productivity Dashboard
+# Todo List Life Dashboard — Productivity Dashboard
 
 A clean, minimal productivity dashboard.
 
