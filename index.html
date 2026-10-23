@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Focus Board — Productivity Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ===== Header / Greeting ===== -->
+  <header class="topbar">
+    <div class="greeting">
+      <h1 id="greetingText">Hello</h1>
+      <p id="clockText" class="clock">--:--:--</p>
+      <p id="dateText" class="date">Loading…</p>
+    </div>
+
+    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle light and dark mode" title="Toggle theme">
+      <span class="theme-icon theme-icon--sun">☀️</span>
+      <span class="theme-icon theme-icon--moon">🌙</span>
+    </button>
+  </header>
+
+  <main class="dashboard">
+    <!-- ===== Focus Timer ===== -->
+    <section class="card timer-card" aria-labelledby="timerTitle">
+      <h2 id="timerTitle" class="card-title">Focus Timer</h2>
+      <div id="timerDisplay" class="timer-display" aria-live="polite">25:00</div>
+      <div class="timer-controls">
+        <button id="timerStart" class="btn btn--primary" type="button">Start</button>
+        <button id="timerStop" class="btn" type="button">Stop</button>
+        <button id="timerReset" class="btn btn--ghost" type="button">Reset</button>
+      </div>
+      <p class="timer-hint" id="timerHint">Press Start to begin a 25-minute focus session.</p>
+    </section>
+
+    <!-- ===== To-Do List ===== -->
+    <section class="card todo-card" aria-labelledby="todoTitle">
+      <h2 id="todoTitle" class="card-title">To-Do List</h2>
+
+      <form id="todoForm" class="todo-form" autocomplete="off">
+        <input
+          id="todoInput"
+          class="todo-input"
+          type="text"
+          placeholder="Add a new task…"
+          maxlength="120"
+          aria-label="New task"
+        />
+        <button class="btn btn--primary" type="submit">Add</button>
+      </form>
+
+      <div class="todo-toolbar">
+        <label for="todoSort" class="sort-label">Sort by:</label>
+        <select id="todoSort" class="sort-select">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="az">Alphabetical (A–Z)</option>
+          <option value="za">Alphabetical (Z–A)</option>
+          <option value="status">Uncompleted first</option>
+        </select>
+      </div>
+
+      <ul id="todoList" class="todo-list" aria-live="polite"></ul>
+
+      <p id="todoEmpty" class="empty-hint">No tasks yet. Add one above to get started!</p>
+    </section>
+
+    <!-- ===== Quick Links ===== -->
+    <section class="card links-card" aria-labelledby="linksTitle">
+      <h2 id="linksTitle" class="card-title">Quick Links</h2>
+
+      <form id="linkForm" class="link-form" autocomplete="off">
+        <input id="linkName" class="link-input" type="text" placeholder="Name (e.g. GitHub)" maxlength="40" aria-label="Link name" />
+        <input id="linkUrl" class="link-input" type="text" placeholder="URL (e.g. github.com)" maxlength="200" aria-label="Link URL" />
+        <button class="btn btn--primary" type="submit">Add Link</button>
+      </form>
+
+      <div id="linksList" class="links-list" aria-live="polite"></div>
+
+      <p id="linksEmpty" class="empty-hint">No links saved yet.</p>
+    </section>
+  </main>
+
+  <!-- ===== Popup Warning (for duplicate tasks) ===== -->
+  <div id="popup" class="popup" role="alert" aria-live="assertive" hidden>
+    <div class="popup-content">
+      <p id="popupMessage" class="popup-message">That task already exists!</p>
+      <button id="popupClose" class="btn btn--primary" type="button">OK</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Built with vanilla HTML, CSS &amp; JavaScript · Data saved in your browser</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

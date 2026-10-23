@@ -1,0 +1,86 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Create project skeleton and production file scaffolding": [
+      {
+        "executionId": "32c37dba-d896-4a90-97d3-8cb7e616f043",
+        "chatSessionId": "sess_66f976dc-d7a8-4ae4-b3e4-70258e2a70bd",
+        "timestamp": 1792676880920
+      },
+      {
+        "executionId": "32c37dba-d896-4a90-97d3-8cb7e616f043",
+        "chatSessionId": "sess_66f976dc-d7a8-4ae4-b3e4-70258e2a70bd",
+        "timestamp": 1792677989314
+      }
+    ],
+    "1.2 Set up the test infrastructure": [
+      {
+        "executionId": "32c37dba-d896-4a90-97d3-8cb7e616f043",
+        "chatSessionId": "sess_66f976dc-d7a8-4ae4-b3e4-70258e2a70bd",
+        "timestamp": 1792676888505
+      },
+      {
+        "executionId": "32c37dba-d896-4a90-97d3-8cb7e616f043",
+        "chatSessionId": "sess_66f976dc-d7a8-4ae4-b3e4-70258e2a70bd",
+        "timestamp": 1792677994708
+      }
+    ],
+    "1. Set up project structure and test infrastructure": [
+      {
+        "executionId": "32c37dba-d896-4a90-97d3-8cb7e616f043",
+        "chatSessionId": "sess_66f976dc-d7a8-4ae4-b3e4-70258e2a70bd",
+        "timestamp": 1792677994820
+      }
+    ],
+    "2.1 Implement getGreeting, formatTime, formatDate": [
+      {
+        "executionId": "0bab11b1-5ec4-4642-bc49-d55384f72f56",
+        "chatSessionId": "sess_1458ad8b-2127-4758-a786-6f169f0ebcf6",
+        "timestamp": 1792678041660
+      },
+      {
+        "executionId": "2d88fe00-a0da-436d-a1d4-2badd16cb8cd",
+        "chatSessionId": "sess_11ac65e2-1c67-4545-a882-acd96bebc145",
+        "timestamp": 1792715297768
+      },
+      {
+        "executionId": "2d88fe00-a0da-436d-a1d4-2badd16cb8cd",
+        "chatSessionId": "sess_11ac65e2-1c67-4545-a882-acd96bebc145",
+        "timestamp": 1792716021917
+      }
+    ],
+    "2. Implement greeting and date/time pure logic": [
+      {
+        "executionId": "2d88fe00-a0da-436d-a1d4-2badd16cb8cd",
+        "chatSessionId": "sess_11ac65e2-1c67-4545-a882-acd96bebc145",
+        "timestamp": 1792716022210
+      }
+    ],
+    "3.1 Implement formatTimerDisplay, validateTaskText, createTask": [
+      {
+        "executionId": "cb3f80a4-6349-4fd8-a820-49f185f51b42",
+        "chatSessionId": "sess_9da7a8a2-cda7-435a-885c-b2447507ede9",
+        "timestamp": 1792716067123
+      },
+      {
+        "executionId": "cb3f80a4-6349-4fd8-a820-49f185f51b42",
+        "chatSessionId": "sess_9da7a8a2-cda7-435a-885c-b2447507ede9",
+        "timestamp": 1792716477451
+      }
+    ],
+    "3. Implement timer display and task validation pure logic": [
+      {
+        "executionId": "cb3f80a4-6349-4fd8-a820-49f185f51b42",
+        "chatSessionId": "sess_9da7a8a2-cda7-435a-885c-b2447507ede9",
+        "timestamp": 1792716477565
+      }
+    ],
+    "4.1 Implement normalizeTaskText, hasDuplicateTask, sortTasks": [
+      {
+        "executionId": "6cc97817-7af6-4470-bb80-aee5799df7ec",
+        "chatSessionId": "sess_507f2fb9-077d-4aef-a4cb-8207bc758419",
+        "timestamp": 1792716535578
+      }
+    ]
+  }
+}

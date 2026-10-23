@@ -1,0 +1,502 @@
+/* ============================================================
+   Focus Board — Productivity Dashboard
+   Single stylesheet for the whole app. Light/dark via CSS vars.
+   ============================================================ */
+
+/* ---------- Theme variables ---------- */
+:root {
+  --bg: #f4f6fb;
+  --bg-card: #ffffff;
+  --text: #1f2933;
+  --text-muted: #64708a;
+  --border: #e2e8f2;
+  --primary: #4f6df5;
+  --primary-hover: #3d5be0;
+  --danger: #e5484d;
+  --success: #2f9e44;
+  --shadow: 0 4px 18px rgba(20, 30, 60, 0.08);
+  --radius: 14px;
+  --transition: 0.25s ease;
+}
+
+/* Dark theme overrides */
+[data-theme="dark"] {
+  --bg: #131826;
+  --bg-card: #1c2333;
+  --text: #e8edf6;
+  --text-muted: #93a0b8;
+  --border: #2c3648;
+  --primary: #6d8bff;
+  --primary-hover: #5a78f0;
+  --danger: #ff6b6e;
+  --success: #51cf86;
+  --shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- Reset / base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background var(--transition), color var(--transition);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+input,
+select {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* ---------- Top bar / greeting ---------- */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem 2.5rem 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.greeting h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.clock {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-top: 0.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.date {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.15rem;
+}
+
+/* ---------- Theme toggle ---------- */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  position: relative;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.theme-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+/* Show the icon for the mode you'd switch TO */
+[data-theme="light"] .theme-icon--sun,
+:root:not([data-theme="dark"]) .theme-icon--sun {
+  opacity: 1;
+}
+[data-theme="light"] .theme-icon--moon,
+:root:not([data-theme="dark"]) .theme-icon--moon {
+  opacity: 0;
+  position: absolute;
+}
+[data-theme="dark"] .theme-icon--sun {
+  opacity: 0;
+  position: absolute;
+}
+[data-theme="dark"] .theme-icon--moon {
+  opacity: 1;
+}
+
+/* ---------- Dashboard layout ---------- */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 2.5rem 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 1.1rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  padding: 0.55rem 1.1rem;
+  border-radius: 9px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  transition: background var(--transition), border-color var(--transition), transform 0.1s ease;
+}
+
+.btn:hover {
+  border-color: var(--primary);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--primary {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.btn--primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+.btn--ghost {
+  background: transparent;
+}
+
+/* ---------- Focus timer ---------- */
+.timer-display {
+  font-size: 3.6rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  margin: 0.5rem 0 1.25rem;
+}
+
+.timer-display.running {
+  color: var(--primary);
+}
+
+.timer-display.done {
+  color: var(--success);
+  animation: pulse 1s ease-in-out 2;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.timer-controls {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.timer-hint {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+/* ---------- To-Do list ---------- */
+.todo-form,
+.link-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.link-form {
+  flex-direction: column;
+}
+
+.todo-input,
+.link-input {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0.6rem 0.8rem;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.todo-input:focus,
+.link-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.todo-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.sort-select {
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.todo-item:hover {
+  border-color: var(--primary);
+}
+
+.todo-checkbox {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+.todo-text {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+  cursor: pointer;
+  padding: 0.2rem 0.3rem;
+  border-radius: 5px;
+}
+
+.todo-text:focus {
+  outline: 1px solid var(--primary);
+}
+
+.todo-item.done .todo-text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.todo-edit-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.3rem 0.4rem;
+  border-radius: 6px;
+  border: 1px solid var(--primary);
+  background: var(--bg-card);
+  color: var(--text);
+}
+
+.todo-edit-input:focus {
+  outline: none;
+}
+
+.todo-action {
+  flex-shrink: 0;
+  font-size: 0.95rem;
+  line-height: 1;
+  padding: 0.35rem 0.5rem;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.todo-action.edit:hover {
+  border-color: var(--primary);
+}
+
+.todo-action.delete:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* ---------- Quick links ---------- */
+.links-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.link-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: border-color var(--transition), transform 0.1s ease;
+}
+
+.link-chip:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.link-chip:active {
+  transform: scale(0.96);
+}
+
+.link-remove {
+  font-size: 0.95rem;
+  opacity: 0.55;
+  line-height: 1;
+}
+
+.link-remove:hover {
+  opacity: 1;
+  color: var(--danger);
+}
+
+/* ---------- Empty hints ---------- */
+.empty-hint {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+/* ---------- Popup warning ---------- */
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 20, 35, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fade-in 0.18s ease;
+}
+
+.popup[hidden] {
+  display: none;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.popup-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  padding: 1.6rem 1.8rem;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  animation: pop-in 0.22s ease;
+}
+
+@keyframes pop-in {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.popup-message {
+  font-size: 1.02rem;
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .topbar {
+    padding: 1.5rem 1.25rem 0.75rem;
+  }
+  .dashboard {
+    padding: 0.75rem 1.25rem 2rem;
+  }
+  .greeting h1 {
+    font-size: 1.5rem;
+  }
+  .clock {
+    font-size: 2rem;
+  }
+  .timer-display {
+    font-size: 2.8rem;
+  }
+}
